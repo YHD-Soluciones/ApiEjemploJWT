@@ -6,8 +6,8 @@
 //  Proyecto: ApiEjemploJWT
 //  Fichero: AuthController.cs
 // 
-// Creado:              14 / 08 / 2023 - 0:46
-// Última modificación: 14 / 08 / 2023 - 2:10
+// Creado:              29 / 08 / 2023 - 09:03 p. m.
+// Última modificación: 29 / 08 / 2023 - 09:55 p. m.
 // 
 //  Copyright: YHD Soluciones. © 2023
 // ---------------------------------------------------
@@ -35,7 +35,7 @@ namespace ApiEjemploJWT.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[Authorize(Roles = "")]
 public class AuthController : ControllerBase
 {
     private readonly IConfiguration _configuration;
@@ -81,6 +81,7 @@ public class AuthController : ControllerBase
 
         var data = await _context.Usuarios.Where(w =>
                 w.NombreUsuario == loginRequest.NombreUsuario && w.Password == GetSha1(loginRequest.Password))
+            .Include(i => i.Rol)
             .FirstOrDefaultAsync();
         if (data == null) return Unauthorized("Nombre de Usuario o contraseña incorrecta");
 
@@ -107,7 +108,7 @@ public class AuthController : ControllerBase
         var claims = new List<Claim>
         {
             new(ClaimTypes.Name, usuario.NombreUsuario),
-            new(ClaimTypes.Role, "Admin")
+            new(ClaimTypes.Role, usuario.Rol.Nombre)
         };
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value!));

@@ -6,8 +6,8 @@
 //  Proyecto: ApiEjemploJWT
 //  Fichero: Usuario.cs
 // 
-// Creado:              14 / 08 / 2023 - 0:54
-// Última modificación: 14 / 08 / 2023 - 0:54
+// Creado:              29 / 08 / 2023 - 09:03 p. m.
+// Última modificación: 29 / 08 / 2023 - 09:07 p. m.
 // 
 //  Copyright: YHD Soluciones. © 2023
 // ---------------------------------------------------
@@ -30,4 +30,8 @@ public class Usuario
 
     [Required] public string NombreUsuario { get; set; } = string.Empty;
     [Required] public string Password { get; set; } = string.Empty;
+
+    [Required] public Guid RolId { get; set; } = Guid.Empty;
+
+    [ForeignKey("RolId")] public Rol? Rol { get; set; }
 }

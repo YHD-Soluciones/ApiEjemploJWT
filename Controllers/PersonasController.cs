@@ -6,8 +6,8 @@
 //  Proyecto: ApiEjemploJWT
 //  Fichero: PersonasController.cs
 // 
-// Creado:              13 / 08 / 2023 - 23:36
-// Última modificación: 14 / 08 / 2023 - 2:10
+// Creado:              29 / 08 / 2023 - 09:03 p. m.
+// Última modificación: 29 / 08 / 2023 - 09:24 p. m.
 // 
 //  Copyright: YHD Soluciones. © 2023
 // ---------------------------------------------------
@@ -27,7 +27,7 @@ namespace ApiEjemploJWT.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[Authorize(Roles = "Administrador")]
 public class PersonasController : ControllerBase
 {
     private readonly ApplicationDbContext _context;

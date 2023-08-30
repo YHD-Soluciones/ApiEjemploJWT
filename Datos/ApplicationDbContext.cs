@@ -6,8 +6,8 @@
 //  Proyecto: ApiEjemploJWT
 //  Fichero: ApplicationDbContext.cs
 // 
-// Creado:              13 / 08 / 2023 - 23:33
-// Última modificación: 14 / 08 / 2023 - 0:55
+// Creado:              29 / 08 / 2023 - 09:03 p. m.
+// Última modificación: 29 / 08 / 2023 - 09:09 p. m.
 // 
 //  Copyright: YHD Soluciones. © 2023
 // ---------------------------------------------------
@@ -31,4 +31,5 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Persona> Personas { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Rol> Roles { get; set; }
 }
